@@ -27,25 +27,33 @@ def translate_text():
             output_text.insert(tk.END, translated_text)
     except Exception as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
-        
+
 app = tk.Tk()
 app.title("Text Translator")
+app.geometry("500x500")
+app.configure(bg="#30475E")
 
-input_text = tk.Text(app, height=10, width=50)
-input_text.pack(pady=10)
+title_label = tk.Label(app, text="Text Translator", font=("Arial", 16, "bold"), bg="#30475E", fg="#F5F5F5")
+title_label.pack(pady=(10, 0))
 
-source_language = ttk.Combobox(app, values=["en", "es", "fr", "de"], width=10)
+input_text = tk.Text(app, height=8, width=50, font=("Arial", 12), bg="#F5F5F5", fg="#333333", bd=0)
+input_text.pack(pady=(20, 10))
+
+frame = tk.Frame(app, bg="#30475E")
+frame.pack(pady=10)
+
+source_language = ttk.Combobox(frame, values=["en", "es", "fr", "de"], width=10)
 source_language.set("en")
-source_language.pack(pady=5)
+source_language.pack(side="left", padx=5)
 
-target_language = ttk.Combobox(app, values=["en", "es", "fr", "de"], width=10)
+target_language = ttk.Combobox(frame, values=["en", "es", "fr", "de"], width=10)
 target_language.set("es")
-target_language.pack(pady=5)
+target_language.pack(side="left", padx=5)
 
-translate_button = tk.Button(app, text="Translate", command=translate_text)
+translate_button = tk.Button(app, text="Translate", command=translate_text, font=("Arial", 12), bg="#F05454", fg="#F5F5F5", activebackground="#D94343", activeforeground="#F5F5F5", bd=0, padx=10, pady=5)
 translate_button.pack(pady=10)
 
-output_text = tk.Text(app, height=10, width=50)
-output_text.pack(pady=10)
+output_text = tk.Text(app, height=8, width=50, font=("Arial", 12), bg="#F5F5F5", fg="#333333", bd=0)
+output_text.pack(pady=(10, 20))
 
 app.mainloop()
